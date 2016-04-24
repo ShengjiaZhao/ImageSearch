@@ -4,9 +4,9 @@
 学习了Tomcat，MyEclipse的使用，
 ###	实现BM25评分算法
 * 为了使用lucene4.0的新功能，将工程移植到Lucene4.0。做法如下
-  	1.下载Lucene4.0的jar包lucene-core-4.0.0.jar，并替换原先的3.5版本jar包。注意任何高于4.0的版本都会出现兼容性问题，任何低于4.0的版本也会出现兼容性问题
-	2.从https://code.google.com/archive/p/ik-analyzer/下载IKAnalyzer的IK Analyzer 2012FF_hf1 其他版本与lucene4.0不兼容。任何其他版本经过测试都存在兼容性问题
-	3.因为Lucene3.x到Lucene4.x有重大的接口变化，需要将源代码相应部分修改，例如将```ImageIndexer```构造函数修改为
+  	1. 下载Lucene4.0的jar包lucene-core-4.0.0.jar，并替换原先的3.5版本jar包。注意任何高于4.0的版本都会出现兼容性问题，任何低于4.0的版本也会出现兼容性问题
+	2. 从https://code.google.com/archive/p/ik-analyzer/下载IKAnalyzer的IK Analyzer 2012FF_hf1 其他版本与lucene4.0不兼容。任何其他版本经过测试都存在兼容性问题
+	3. 因为Lucene3.x到Lucene4.x有重大的接口变化，需要将源代码相应部分修改，例如将```ImageIndexer```构造函数修改为
 	```
 	    	IndexWriterConfig iwc = new IndexWriterConfig(Version.LUCENE_40, analyzer);
     		Directory dir = FSDirectory.open(new File(indexDir));
