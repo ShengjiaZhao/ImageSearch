@@ -2,12 +2,10 @@ import java.io.*;
 import java.io.IOException;
 
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.Term;
-import org.apache.lucene.queryParser.ParseException;
-import org.apache.lucene.queryParser.QueryParser;
+import org.apache.lucene.search.similarities.*;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
@@ -31,8 +29,8 @@ public class ImageSearcher {
 		try{
 			reader = IndexReader.open(FSDirectory.open(new File(indexdir)));
 			searcher = new IndexSearcher(reader);
-			//searcher.setSimilarity(new SimpleSimilarity());
 			searcher.setSimilarity(new BM25Similarity());
+			//searcher.setSimilarity(new BM25Similarity());
 		}catch(IOException e){
 			e.printStackTrace();
 		}

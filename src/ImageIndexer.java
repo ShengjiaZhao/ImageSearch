@@ -7,7 +7,7 @@ import java.util.regex.*;
 import org.w3c.dom.*;   
 import org.wltea.analyzer.lucene.IKAnalyzer;
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.search.similarities.*;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.index.IndexWriter;
@@ -27,10 +27,10 @@ public class ImageIndexer {
     public ImageIndexer(String indexDir){
     	analyzer = new IKAnalyzer();
     	try{
-    		IndexWriterConfig iwc = new IndexWriterConfig(Version.LUCENE_35, analyzer);
+    		IndexWriterConfig iwc = new IndexWriterConfig(Version.LUCENE_40, analyzer);
     		Directory dir = FSDirectory.open(new File(indexDir));
+    		iwc.setSimilarity(new BM25Similarity());
     		indexWriter = new IndexWriter(dir,iwc);
-    		indexWriter.setSimilarity(new SimpleSimilarity());
     	}catch(IOException e){
     		e.printStackTrace();
     	}
