@@ -23,13 +23,18 @@
 		float result = idf * r;
 ```
 ###	实现VSM模型评分
-* 实现VSM也非常简单，只需要把```BM25Similarity```替换为
-拓展任务
-1.	在ImageIndexer中同时对所附带的html文件进行解析并索引，并在ImageSearch中对html域也进行搜索。关键点在于读取html文件的编码并正确解码，同时提取内容并删掉标签和控制字段。
+* 实现VSM也非常简单，只需要把```BM25Similarity```替换为```TFIDFSimilarity```
 
-如下图，加入html解析后即使搜索没有在标签中出现的词汇也可以检索到相关结果。不过缺憾在于html文件无关内容较多，而正确识别与图片真正相关的字段比较困难，所以依赖于html文本检索到的图片精确度比较低
+# 拓展任务
+## HTML解析
+在ImageIndexer中同时对所附带的html文件进行解析并索引，并在ImageSearch中对html域也进行搜索。
+关键点在于读取html文件的编码并正确解码，同时提取内容并删掉标签和控制字段。
 
-# Image Indexing
+如下图，加入html解析后即使搜索没有在标签中出现的词汇也可以检索到相关结果。
+不过缺憾在于html文件无关内容较多，而正确识别与图片真正相关的字段比较困难，所以依赖于html文本检索到的图片精确度比较低
+![alt tag](https://github.com/ShengjiaZhao/ImageSearch/blob/master/reportimg/html_compare.jpg)
+
+* 实现方法为在```ImageIndexer```中加入如下代码
 ```
 	String pathString = locate.getNodeValue();
 	pathString = pathString.replace(".jpg", ".html");
@@ -84,7 +89,7 @@
 		break;
 	}
 ```
-同时在搜索的时候在两个域中都进行搜索并合并结果
+同时在```ImageServer```搜索的时候在两个域中都进行搜索并合并结果
 ```
 	TopDocs[] resultsArray = new TopDocs[2];
 	resultsArray[0]=search.searchQuery(queryString, "abstract", 100);
