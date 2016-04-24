@@ -1,7 +1,10 @@
 # 搜索引擎第二次作业报告
 ## 基本任务
+
 ###	跑通流程
-学习了Tomcat，MyEclipse的使用，
+学习了Tomcat，MyEclipse，Lucene的使用，并通过ImageIndexer建立索引。需要注意的是存放的路径，
+为了正确运行Tomcat，forIndex文件夹应当放在Tomcat安装目录下，而图片应当放到TOMCAT_PATH\webapps\ROOT\pictures\下
+
 ###	实现BM25评分算法
 * 为了使用lucene4.0的新功能，将工程移植到Lucene4.0。做法如下
   	1. 下载Lucene4.0的jar包lucene-core-4.0.0.jar，并替换原先的3.5版本jar包。注意任何高于4.0的版本都会出现兼容性问题，任何低于4.0的版本也会出现兼容性问题
@@ -22,6 +25,7 @@
 		float r = termDocs.freq() * (K1 + 1) / (termDocs.freq() + k);
 		float result = idf * r;
 ```
+
 ###	实现VSM模型评分
 * 实现VSM也非常简单，只需要把```BM25Similarity```替换为```TFIDFSimilarity```
 
