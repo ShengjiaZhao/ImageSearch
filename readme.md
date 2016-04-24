@@ -25,9 +25,10 @@
 		float r = termDocs.freq() * (K1 + 1) / (termDocs.freq() + k);
 		float result = idf * r;
 ```
+但是原先的实现在升级Lucene4.0后有大量不兼容问题，故弃用
 
 ###	实现VSM模型评分
-* 实现VSM也非常简单，只需要把```BM25Similarity```替换为```TFIDFSimilarity```
+* 实现VSM也非常简单，只需要把```BM25Similarity```替换为```DefaultSimilarity```
 
 # 拓展任务
 ## HTML解析
