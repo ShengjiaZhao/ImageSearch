@@ -29,6 +29,9 @@
 
 ###	实现VSM模型评分
 * 实现VSM也非常简单，只需要把```BM25Similarity```替换为```DefaultSimilarity```
+* 比较：
+对于大多数测试的查询词，BM25的结果比VSM的结果合理度相近。例如以下左图是BM25的结果，右图是VSM的结果（加入了html信息，见下面的章节）
+![alt tag](https://github.com/ShengjiaZhao/ImageSearch/blob/master/reportimg/score_compare.jpg)
 
 # 拓展任务
 ## HTML解析
