@@ -29,7 +29,7 @@ public class ImageSearcher {
 		try{
 			reader = IndexReader.open(FSDirectory.open(new File(indexdir)));
 			searcher = new IndexSearcher(reader);
-			searcher.setSimilarity(new BM25Similarity());
+			searcher.setSimilarity(new DefaultSimilarity());
 			//searcher.setSimilarity(new BM25Similarity());
 		}catch(IOException e){
 			e.printStackTrace();
